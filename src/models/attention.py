@@ -17,10 +17,10 @@ class CausalSelfAttention(nn.Module):
         self.num_heads = num_heads
         self.head_dim = d_model // num_heads
 
-        self.q_proj = nn.Linear(d_model, d_model)
-        self.k_proj = nn.Linear(d_model, d_model)
-        self.v_proj = nn.Linear(d_model, d_model)
-        self.out_proj = nn.Linear(d_model, d_model)
+        self.q_proj = nn.Linear(d_model, d_model, bias=False)
+        self.k_proj = nn.Linear(d_model, d_model, bias=False)
+        self.v_proj = nn.Linear(d_model, d_model, bias=False)
+        self.out_proj = nn.Linear(d_model, d_model, bias=False)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         B, T, D = x.shape
