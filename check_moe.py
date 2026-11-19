@@ -15,7 +15,7 @@ model = MoE(
 
 x = torch.randn(3, 5, 64, device=device)
 
-y = model(x)
+y, _, _  = model(x)
 
 print("Device:", device)
 print("Input shape:", x.shape)
