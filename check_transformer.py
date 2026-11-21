@@ -62,5 +62,13 @@ for use_moe in (False, True):
     for param in model.parameters():
         if param.grad is not None:
             assert torch.isfinite(param.grad).all()
+    assert model.layers[0] is not model.layers[1]
 
+    assert (
+        model.layers[0].att.q_proj.weight.data_ptr()
+        !=
+        model.layers[1].att.q_proj.weight.data_ptr()
+    )
+
+    print("Transformer blocks are independent!")
     print("All checks passed!")
